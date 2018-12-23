@@ -19,5 +19,15 @@
         }
     },
     "require-dev": {
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Luka\\Envoy\\EnvoyServiceProvider"
+            ],
+            "aliases": {
+                "EnvoyWorker": "Luka\\Envoy\\Facades\\Worker"
+            }
+        }
     }
 }

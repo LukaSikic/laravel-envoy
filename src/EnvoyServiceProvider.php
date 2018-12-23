@@ -20,7 +20,7 @@ class EnvoyServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->app->bind('laravel-envoy', function(){
+        $this->app->bind('envoy-worker', function(){
             return new Worker();
         });
     }

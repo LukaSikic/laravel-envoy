@@ -10,6 +10,6 @@ class Worker extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return 'laravel-envoy';
+        return 'envoy-worker';
     }
 }
