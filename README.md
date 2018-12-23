@@ -1,3 +1,4 @@
+![](https://bosnadev.com/wp-content/uploads/2015/01/laravel_envoy.png)
 ## Installation
 `composer require sikic/laravel-envoy`
 
