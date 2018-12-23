@@ -1,5 +1,5 @@
 {
-    "name": "luka/laravel-envoy",
+    "name": "sikic/laravel-envoy",
     "description": "Run envoy tasks from your controller",
     "type": "library",
     "require": {
