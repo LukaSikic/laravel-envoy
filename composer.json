@@ -1,0 +1,23 @@
+{
+    "name": "luka/laravel-envoy",
+    "description": "Run envoy tasks from your controller",
+    "type": "library",
+    "require": {
+        "symfony/process": "v4.*"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Luka",
+            "email": "luka@sikic.eu"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Luka\\Envoy\\": "src/"
+        }
+    },
+    "require-dev": {
+    }
+}
