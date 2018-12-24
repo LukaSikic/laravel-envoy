@@ -20,6 +20,20 @@ class Worker
     public $arguments;
 
     /**
+     * Force output and not return exception ?
+     * @var
+     */
+    public $forceOutput;
+
+    /**
+     * Worker constructor.
+     */
+    public function __construct()
+    {
+        $this->forceOutput = config('envoy.force_output');
+    }
+
+    /**
      * Execute the command and get output
      *
      * @return null|string|string[]
@@ -34,7 +48,8 @@ class Worker
         $process->setIdleTimeout(config('envoy.idle_timeout'));
         $process->setWorkingDirectory(config('envoy.directory'));
 
-        if(config('envoy.force_output') == false) {
+        // todo: refactor this
+        if($this->forceOutput == false) {
             try {
                 $process->mustRun();
                 $output = $process->getOutput();
@@ -86,6 +101,23 @@ class Worker
             }
 
             $this->arguments = implode(' ', $args);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Set value for forcing output
+     *
+     * @param bool $value
+     * @return $this
+     */
+    public function forceOutput( $value = true)
+    {
+        if($value == true){
+            $this->forceOutput = true;
+        } else {
+            $this->forceOutput = false;
         }
 
         return $this;
