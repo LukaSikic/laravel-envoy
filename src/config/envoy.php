@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'path' => '~/.composer/vendor/bin/envoy',
+    'path' => env('ENVOY_PATH', '~/.composer/vendor/bin/envoy'),
 
     /*
     |--------------------------------------------------------------------------
