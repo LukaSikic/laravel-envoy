@@ -34,12 +34,28 @@ class Worker
         $process->setIdleTimeout(config('envoy.idle_timeout'));
         $process->setWorkingDirectory(config('envoy.directory'));
 
-        try {
-            $process->mustRun();
-            $output = $process->getOutput();
-            return preg_replace('/\[.*?\]\:\ /', '', $output);
-        } catch (ProcessFailedException $e) {
-            throw new \Exception($e->getMessage());
+        if(config('envoy.force_output') == false) {
+            try {
+                $process->mustRun();
+                $output = $process->getOutput();
+                return preg_replace('/\[.*?\]\:\ /', '', $output);
+            } catch (ProcessFailedException $e) {
+                throw new \Exception($e->getMessage());
+            }
+        } else {
+            $result = [];
+
+            $process->run(
+                function ($type, $buffer) use (&$result) {
+                    foreach(config('envoy.clear_output') as $rule) {
+                        $buffer = preg_replace($rule, '', $buffer);
+                    }
+
+                    $result[] = $buffer;
+                }
+            );
+
+            return implode(' ', $result);
         }
     }
 
@@ -66,7 +82,7 @@ class Worker
     {
         if(count($arguments) > 0) {
             foreach ($arguments as $key => $value) {
-                $args[] = '--' . $key . '="' . $value . '"';
+                $args[] = ' --' . $key . '="' . $value . '" ';
             }
 
             $this->arguments = implode(' ', $args);

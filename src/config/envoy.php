@@ -58,4 +58,33 @@ return [
 
     'idle_timeout' => 300,
 
+    /*
+    |--------------------------------------------------------------------------
+    | Force console output
+    |--------------------------------------------------------------------------
+    |
+    | If command execution on remote server fails, when set to false, it will
+    |
+    | return an exception and if true, it will return console output
+    |
+    | Default: false
+    |
+    */
+
+    'force_output' => true,
+
+    /*
+    |--------------------------------------------------------------------------
+    | An array of regexes to clear output from console command
+    |
+    | Works only when force_output => true
+    |
+    |--------------------------------------------------------------------------
+    |
+    */
+
+    'clear_output' => [
+        '/\[✗] This task did not complete successfully on one of your servers\./'
+    ]
+
 ];
