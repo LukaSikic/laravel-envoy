@@ -7,7 +7,7 @@
 
 
 ## Usage 
-This is just an example, in real world, you probably want to put this in queue
+This is just an example, in production, you probably want to put this in queue
 ```
 <?php
 
