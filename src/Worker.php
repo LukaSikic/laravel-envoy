@@ -41,7 +41,11 @@ class Worker
      */
     public function run()
     {
-        $command = config('envoy.path') . " run " . $this->task . ' ' . $this->arguments;
+        $command = [config('envoy.path'), "run", $this->task];
+
+        foreach($this->arguments as $argument){
+            array_push($command, $argument);
+        }
 
         $process = new Process($command);
         $process->setTimeout(config('envoy.timeout'));
@@ -97,10 +101,10 @@ class Worker
     {
         if(count($arguments) > 0) {
             foreach ($arguments as $key => $value) {
-                $args[] = ' --' . $key . '="' . $value . '" ';
+                $args[] = '--' . $key . '="' . $value . '" ';
             }
 
-            $this->arguments = implode(' ', $args);
+            $this->arguments = $args;
         }
 
         return $this;
