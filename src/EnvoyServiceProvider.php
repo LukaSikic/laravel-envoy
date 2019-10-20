@@ -9,12 +9,12 @@ class EnvoyServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->mergeConfigFrom(
-            __DIR__ . '/config/envoy.php',
+            __DIR__ . '/../config/envoy.php',
             'envoy'
         );
 
         $this->publishes([
-            __DIR__ . '/config/envoy.php' => config_path('envoy.php')
+            __DIR__ . '/../config/envoy.php' => config_path('envoy.php')
         ]);
     }
 
