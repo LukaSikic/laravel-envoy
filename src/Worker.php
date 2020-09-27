@@ -9,19 +9,19 @@ class Worker
 {
     /**
      * Task to execute
-     * @var
+     * @var string task
      */
     public $task;
 
     /**
      * Task arguments
-     * @var
+     * @var array $arguments
      */
     public $arguments;
 
     /**
      * Force output and not return exception ?
-     * @var
+     * @var bool $forceOutput
      */
     public $forceOutput;
 
@@ -46,6 +46,8 @@ class Worker
         foreach($this->arguments as $argument){
             array_push($command, $argument);
         }
+
+return ($command);
 
         $process = new Process($command);
         $process->setTimeout(config('envoy.timeout'));
@@ -81,13 +83,14 @@ class Worker
     /**
      * Set task name
      *
-     * @param $name
+     * @param string $name
      * @return $this
      */
-    public function task($name)
+    public function task(string $name)
     {
-        if (empty($name)) return $this;
-        $this->task = $name;
+        if (!empty($name)) {
+            $this->task = $name;
+        }
         return $this;
     }
 
@@ -97,7 +100,7 @@ class Worker
      * @param array $arguments
      * @return $this
      */
-    public function arguments($arguments)
+    public function arguments(array $arguments)
     {
         if(count($arguments) > 0) {
             foreach ($arguments as $key => $value) {
@@ -116,15 +119,10 @@ class Worker
      * @param bool $value
      * @return $this
      */
-    public function forceOutput( $value = true)
+    public function forceOutput(bool $value = true)
     {
-        if($value == true){
-            $this->forceOutput = true;
-        } else {
-            $this->forceOutput = false;
-        }
+        $this->forceOutput = $value;
 
         return $this;
     }
-
 }
