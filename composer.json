@@ -3,7 +3,7 @@
     "description": "Run envoy tasks from your controller",
     "type": "library",
     "require": {
-        "symfony/process": "v5.*"
+        "symfony/process": "v6.*"
     },
     "license": "MIT",
     "authors": [
